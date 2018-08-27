@@ -20,15 +20,21 @@
 不用擔心安全問題，我沒有要偷你的 cookie 之類的，不放心的反正程式碼都開源了，還很貼心的準備一份未壓縮的，可以看完再使用。
 
 ## 已知問題
-1. 目前在 Chrome 上測試可以使用，但是 Firefox 無法使用，
+### 1. 
+目前在 Chrome 上測試可以使用，但是 Firefox 無法使用，
 
 因為「内容安全策略 (CSP)」會擋掉，這個策略是為了防止 XSS 之類的攻擊，有興趣的可以自己研究下。
 
-### 暫時解決方法
+#### 暫時解決方法
 如果發現點了書籤沒有用，可以直接把[程式碼](https://github.com/hbdoy/hackmd_download/blob/master/js/minify.js)複製到 console(F12)，變成多一個步驟而已。
 
 #### 還是不會?
+![](https://i.imgur.com/cnQxptO.gif)
 
+### 2. 
+[網頁](https://hbdoy.github.io/hackmd_download/)拖拉時有些線條會跑掉，目前還沒找到原因，
+
+但解決方法就重新整理就好~
 
 ## 未來進度
 手動複製程式碼很麻煩? 程式碼會不會有問題啊?
