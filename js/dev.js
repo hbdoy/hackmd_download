@@ -20,6 +20,7 @@ javascript: void((function (d) {
             return "";
         }
         if (getCookie("loginstate")) {
+            var filter;
             var cdns = ["https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js", "https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.min.js", "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"]
             var result = d.createElement("P");
             result.className = "hide";
@@ -68,17 +69,22 @@ javascript: void((function (d) {
                         window.alert("Someing errors, please try later");
                     } else {
                         allNotes = JSON.parse(xhr.responseText).history;
-                        var filter = prompt("請選擇下載類型:\na: 全部, s: 收藏, o: 其他(不包含收藏)", "a");
-                        if (filter == 's') {
-                            allNotes = allNotes.filter(function (item, index, array) {
-                                return item.pinned;
-                            });
-                        } else if (filter == 'o') {
-                            allNotes = allNotes.filter(function (item, index, array) {
-                                return !item.pinned;
-                            });
+                        filter = prompt("請選擇下載類型:\na: 全部, s: 收藏, o: 其他(不包含收藏)", "a");
+                        if (filter != null) {
+                            if (filter == 's') {
+                                allNotes = allNotes.filter(function (item, index, array) {
+                                    return item.pinned;
+                                });
+                            } else if (filter == 'o') {
+                                allNotes = allNotes.filter(function (item, index, array) {
+                                    return !item.pinned;
+                                });
+                            } else {
+                                // 若有預期外的字元，預設下載全部
+                                filter = "a";
+                            }
+                            downloadAndPack();
                         }
-                        downloadAndPack();
                     }
                 };
                 var Promise = window.Promise;
@@ -128,7 +134,11 @@ javascript: void((function (d) {
                             updatePercent(metadata.percent | 0);
                         })
                         .then(function callback(blob) {
-                            saveAs(blob, "example.zip");
+                            var tmp = "";
+                            if(filter == "a") tmp = "_all";
+                            else if(filter == "s") tmp = "_star";
+                            if(filter == "o") tmp = "_other";
+                            saveAs(blob, "notes" + tmp + ".zip");
                             showMessage("done !");
                         }, function (e) {
                             showError(e);
