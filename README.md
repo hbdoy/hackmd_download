@@ -23,7 +23,7 @@
 ![](https://i.imgur.com/6ltZ7u9.gif)
 
 ## 已知問題
-### 1. 
+### 1.
 目前在 Chrome 上測試可以使用，但是 Firefox 無法使用，
 
 因為「内容安全策略 (CSP)」會擋掉，這個策略是為了防止 XSS 之類的攻擊，有興趣的可以自己研究下。
@@ -39,7 +39,7 @@
 #### 還是不會?
 ![](https://i.imgur.com/cnQxptO.gif)
 
-### 2. 
+### 2.
 [網頁](https://hbdoy.github.io/hackmd_download/)拖拉時有些線條會跑掉，目前還沒找到原因，
 
 但解決方法就重新整理就好~
