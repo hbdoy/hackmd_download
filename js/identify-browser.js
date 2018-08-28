@@ -8,7 +8,8 @@ document.body.onload = function () {
                 document.querySelector("#explainGif").src = "./img/firefox.gif";
                 document.querySelector("#bookmark").hidden = true;
                 document.querySelector("#readme").innerHTML = `
-                <span>把<a href='https://github.com/hbdoy/hackmd_download/blob/master/js/minify.js' target='_blank'>程式碼</a>複製到主控台執行 Console(F12)，或是直接點擊按鈕複製</span><button id="copyBtn" class="mt-2 btn btn-success" data-clipboard-target="#code-copy">複製到剪貼版</button>
+                <span>把<a href='https://github.com/hbdoy/hackmd_download/blob/master/js/minify.js' target='_blank'>程式碼</a>複製到主控台執行 Console(F12)，或是直接點擊按鈕複製</span><br><button id="copyBtn" class="mt-2 btn btn-success" data-clipboard-target="#code-copy">複製到剪貼版</button>
+                <br><a class="mt-2 btn btn-secondary" href="https://hackmd.io/recent" target="_blank">前往 HackMD</a>
                 `;
                 new ClipboardJS('#copyBtn');
                 document.querySelector("#code-copy").hidden = false;
