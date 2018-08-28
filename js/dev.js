@@ -69,7 +69,7 @@ javascript: void((function (d) {
                         window.alert("Someing errors, please try later");
                     } else {
                         allNotes = JSON.parse(xhr.responseText).history;
-                        filter = prompt("請選擇下載類型:\na: 全部, s: 收藏, o: 其他(不包含收藏)", "a");
+                        filter = prompt("請選擇下載類型: a: 全部, s: 收藏, o: 其他(不包含收藏)", "a");
                         if (filter != null) {
                             if (filter == 's') {
                                 allNotes = allNotes.filter(function (item, index, array) {

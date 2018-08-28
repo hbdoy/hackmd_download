@@ -60,3 +60,8 @@ body {
     color: black;
     text-decoration: none;
 }
+
+#code-copy {
+    width: 1px;
+    height: 1px;
+}
