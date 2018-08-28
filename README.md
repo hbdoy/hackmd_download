@@ -29,6 +29,11 @@
 因為「内容安全策略 (CSP)」會擋掉，這個策略是為了防止 XSS 之類的攻擊，有興趣的可以自己研究下。
 
 #### 暫時解決方法
+[更] 18/08/28
+火狐新增一鍵複製按鈕
+
+------
+
 如果發現點了書籤沒有用，可以直接把[程式碼](https://github.com/hbdoy/hackmd_download/blob/master/js/minify.js)複製到 console(F12)，變成多一個步驟而已。
 
 #### 還是不會?
@@ -49,6 +54,13 @@
 除了書籤以外，也能透過上傳 HackMD 匯出的紀錄(JSON)來下載筆記~
 
 ## 版本
+V 1.1.1
+[2018/08/28]:
+
+1. 新增瀏覽器判斷，自動最佳化呈現內容
+2. 優化下載壓縮包檔名
+3. 修復點擊「取消」按鈕後還是下載的問題
+
 V 1.0
 [2018/08/28]:
 
@@ -60,4 +72,5 @@ V 1.0
 - [JSZip](https://stuk.github.io/jszip/) (打包資料)
   - FileSaver
   - JsZip-utils
+- [clipboardjs](https://clipboardjs.com/)
 - JQuery
