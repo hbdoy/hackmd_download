@@ -97,7 +97,7 @@ javascript: void((function (d) {
                         JSZipUtils.getBinaryContent(url, function (err, data) {
                             if (err) {
                                 var errStr = err.toString();
-                                alert("A Page can't download normally.\n" + errStr);
+                                alert("A Page cannot download normally.\n" + errStr);
                                 resolve(errStr);
                             } else {
                                 resolve(data);
