@@ -19,7 +19,7 @@ javascript: void((function (d) {
             }
             return "";
         }
-        if (getCookie("loginstate")) {
+        if (getCookie("loginstate") === 'true') {
             var filter;
             var cdns = ["https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js", "https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.min.js", "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"]
             var result = d.createElement("P");
