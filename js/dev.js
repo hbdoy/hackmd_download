@@ -100,17 +100,18 @@ javascript: void((function (d) {
 
                 function downloadAndPack() {
                     var zip = new JSZip();
+                    const repeatCount = {};
                     var tmp_names = [];
                     for (var i = 0, j = 1; i < allNotes.length; i++) {
                         var url = "https://hackmd.io/" + allNotes[i].id + "/download";
                         // 過濾掉非法檔案字元
                         var filename = allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") + ".md";
-                        if (tmp_names.indexOf(filename) == -1) {
+                        if (!tmp_names.includes(filename)) {
                             tmp_names.push(filename);
                         } else {
                             // 檔名重複
-                            filename = allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") + "(" + j + ")" + ".md";
-                            j++;
+                            repeatCount[filename] = +!!repeatCount[filename] + 1;
+                            filename = `${ allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") }(${ repeatCount[filename] }).md`;
                         }
                         zip.file(filename, urlToPromise(url), {
                             binary: true
