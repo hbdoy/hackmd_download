@@ -54,6 +54,11 @@
 除了書籤以外，也能透過上傳 HackMD 匯出的紀錄(JSON)來下載筆記~
 
 ## 版本
+V 1.1.3
+[2018/09/05]
+1. 優化判斷 js 載入方法
+2. 優化重複檔名處理方法
+
 V 1.1.2
 [2018/08/31]:
 1. 修復沒有權限讀取他人筆記時(ex: private)，下載進度會直接停住。
@@ -78,3 +83,8 @@ V 1.0
   - JsZip-utils
 - [clipboardjs](https://clipboardjs.com/)
 - JQuery
+
+## Thanks
+[YY Chang](https://github.com/x3388638)
+
+[yiyu0x](https://github.com/yiyu0x)
