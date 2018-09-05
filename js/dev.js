@@ -19,7 +19,7 @@ javascript: void((function (d) {
             }
             return "";
         }
-        if (getCookie("loginstate")) {
+        if (getCookie("loginstate") === 'true') {
             var filter;
             var cdns = ["https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js", "https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.0.2/jszip-utils.min.js", "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"]
             var result = d.createElement("P");
@@ -41,23 +41,15 @@ javascript: void((function (d) {
             progress_outer.appendChild(progress);
             outer.appendChild(progress_outer);
             d.querySelector(".cover-container").insertBefore(outer, d.querySelector("#recent"));
-            for (var i = 0; i < 3; i++) {
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                s.src = cdns[i];
-                d.body.appendChild(s);
-            }
 
-            checkLoad();
-
-            function checkLoad() {
-                // 目前找不到更好的判斷 .js 是否全部載入的方式
-                if ((window.saveAs == undefined) || (window.JSZipUtils == undefined) || (window.JSZip == undefined)) {
-                    setTimeout(checkLoad, 1000);
-                } else {
-                    loaded();
-                }
-            }
+            Promise.all(cdns.map((url) => {
+                const script = document.createElement('script');
+                script.src = url;
+                d.body.appendChild(script);
+                return new Promise((solve) => {
+                    script.onload = solve;
+                });
+            })).then(loaded);
 
             function loaded() {
                 var allNotes = [];
@@ -108,17 +100,18 @@ javascript: void((function (d) {
 
                 function downloadAndPack() {
                     var zip = new JSZip();
+                    const repeatCount = {};
                     var tmp_names = [];
                     for (var i = 0, j = 1; i < allNotes.length; i++) {
                         var url = "https://hackmd.io/" + allNotes[i].id + "/download";
                         // 過濾掉非法檔案字元
                         var filename = allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") + ".md";
-                        if (tmp_names.indexOf(filename) == -1) {
+                        if (!tmp_names.includes(filename)) {
                             tmp_names.push(filename);
                         } else {
                             // 檔名重複
-                            filename = allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") + "(" + j + ")" + ".md";
-                            j++;
+                            repeatCount[filename] = +!!repeatCount[filename] + 1;
+                            filename = `${ allNotes[i].text.replace(/<|>|\?|\:|"|\/|\\|\*|\||;*/g, "") }(${ repeatCount[filename] }).md`;
                         }
                         zip.file(filename, urlToPromise(url), {
                             binary: true
