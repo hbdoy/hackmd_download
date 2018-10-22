@@ -40,7 +40,7 @@ javascript: void((function (d) {
             progress_outer.id = "progress_bar";
             progress_outer.appendChild(progress);
             outer.appendChild(progress_outer);
-            d.querySelector(".cover-container").insertBefore(outer, d.querySelector("#recent"));
+            d.querySelector("#site-content").insertBefore(outer, d.querySelector("#recent"));
 
             Promise.all(cdns.map((url) => {
                 const script = document.createElement('script');
