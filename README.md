@@ -1,4 +1,7 @@
 # hackmd_download
+
+**2019/02 以後官方支援一鍵下載囉**
+
 ## About
 [HackMD](https://hackmd.io) 為線上共同編輯筆記，可以使用 Markdown 格式撰寫，
 
